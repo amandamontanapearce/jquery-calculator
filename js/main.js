@@ -17,12 +17,15 @@ $('.operator').not('#calc').on('click', function(){
 })
 $('#calc').on('click', function(){
   mathArray.push($('#screen').text());
-  var re = /[^-+*a-zA-Z0-9]/g
-  var mathString = mathArray.join('').replace('=', '' ).replace('x', '*').replace(re, '/');
+  var re = /[^-+*0-9]/g
+  var mathString = mathArray.join('').replace('=', '' ).replace(/x/g, '*').replace(re, '/');
+  console.log(mathString)
+  var last = mathString.charAt((mathString.length -1));
+  var secondLast = mathString.charAt((mathString.length -2));
   total = eval(mathString);
   $('#screen').empty();
   $('#screen').text(total);
-  console.log(mathString);
+
 })
 
 //$('span').not('operator').on('click', function(){
